@@ -17,8 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import *
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('drinks/', drink_list),
+    path('drinks/<int:id>', drink_detail),
 ]
+
+# this formator allows user use of http://127.0.0.1:8000/drinks/1.json to check the response in plain json format
+urlpatterns = format_suffix_patterns(urlpatterns)
